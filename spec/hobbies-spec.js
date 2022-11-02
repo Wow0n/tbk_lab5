@@ -10,20 +10,26 @@ describe("test api |", () => {
             });
         });
         it("return all records", function(done) {
-            request.get(base_url + '/all', (error, response, body) => {
-                expect(body).toBe('[{"id":1,"name":"Jan","mark":3},{"id":2,"name":"Anna","mark":4},{"id":3,"name":"Karol","mark":3},{"id":4,"name":"Maciej","mark":4},{"id":5,"name":"Monika","mark":3}]');
+            request.get(base_url + '/hobbies', (error, response, body) => {
+                expect(body).toBe('["jogging", "cooking", "diving", "swimming", "reading"]');
                 done();
             });
         });
         it("return 3rd record", function(done) {
-            request.get(base_url + '/nth/3', (error, response, body) => {
-                expect(body).toBe('[{"id":3,"name":"Karol","mark":3}]');
+            request.get(base_url + '/hobbies/3', (error, response, body) => {
+                expect(body).toBe('diving');
                 done();
             });
         });
-        it("return avg marks from marks table", function(done) {
-            request.get(base_url + '/avg', (error, response, body) => {
-                expect(body).toBe('[{"avg":"3.4000000000000000"}]');
+        it("return number of elements in array", function(done) {
+            request.get(base_url + '/count', (error, response, body) => {
+                expect(body).toBe('5');
+                done();
+            });
+        });
+        it("return number of elements in array", function(done) {
+            request.get(base_url + '/count', (error, response, body) => {
+                expect(body).toBe('["jogging", "diving", "reading"]');
                 done();
             });
         });
