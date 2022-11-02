@@ -8,22 +8,25 @@ app.listen(3000, '0.0.0.0', () => {
 
 app.get('/', (req, res) => {
     res.send('<a href="/hobbies">wszystkie hobby</a><br>' +
-        '<a href="/hobbies/3">3 hobby</a><br>' +
-        '<a href="/count">ilość hobby w lisicie</a>');
+        '<a href="/hobby/3">3 hobby</a><br>' +
+        '<a href="/count">ilość hobby w lisicie</a><br>' +
+        '<a href="/even">parzyste elementy tablicy</a>');
 })
 
 app.get('/hobbies', async (req, res) => {
     res.send(hobbies.getHobbies());
 })
 
-app.get('/hobbies/:id', async (req, res) => {
+app.get('/hobby/:id', async (req, res) => {
     const id = req.params.id;
     const hobby = hobbies.getHobby(id);
+
     if (!hobby) {
         res.status(404).send("Hobby not found");
         return;
     }
-    res.send();
+
+    res.send(hobby);
 })
 
 app.get('/count', async (req, res) => {

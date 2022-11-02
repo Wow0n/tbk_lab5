@@ -5,7 +5,7 @@ exports.getHobbies = () => {
 }
 
 exports.getHobby = id => {
-    if (id < 1 || id > hobbies.length)
+    if (id < 0 || id > hobbies.length)
         return null;
-    return hobbies[id - 1];
+    return hobbies[id];
 }

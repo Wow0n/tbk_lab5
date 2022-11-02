@@ -1,5 +1,5 @@
 let request = require('request');
-const base_url = process.env.BASE_URL || 'http://localhost:3000';
+const base_url = 'http://api:3000';
 
 describe("test api |", () => {
     describe("requests |", ()=> {
@@ -11,13 +11,13 @@ describe("test api |", () => {
         });
         it("return all records", function(done) {
             request.get(base_url + '/hobbies', (error, response, body) => {
-                expect(body).toBe('["jogging", "cooking", "diving", "swimming", "reading"]');
+                expect(body).toBe('["jogging","cooking","diving","swimming","reading"]');
                 done();
             });
         });
         it("return 3rd record", function(done) {
-            request.get(base_url + '/hobbies/3', (error, response, body) => {
-                expect(body).toBe('diving');
+            request.get(base_url + '/hobby/3', (error, response, body) => {
+                expect(body).toBe('swimming');
                 done();
             });
         });
