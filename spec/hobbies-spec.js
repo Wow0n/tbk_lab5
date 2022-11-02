@@ -1,37 +1,31 @@
-let request = require('request');
-const base_url = 'http://api:3000';
+const hobbies = require('../hobbies');
 
 describe("test api |", () => {
-    describe("requests |", ()=> {
-        it("return status code 200", function(done) {
-            request.get(base_url, (error, response, body) => {
-                expect(response.statusCode).toBe(200);
-                done();
+    describe("requests |", () => {
+        describe("getHobbies", () => {
+            const list = hobbies.getHobbies();
+
+            it("returns 5 hobbies", () => {
+                expect(list.length).toEqual(5);
             });
-        });
-        it("return all records", function(done) {
-            request.get(base_url + '/hobbies', (error, response, body) => {
-                expect(body).toBe('["jogging","cooking","diving","swimming","reading"]');
-                done();
+
+            it("returns 'jogging' as first hobby", () => {
+                expect(list[0]).toBe("jogging");
             });
-        });
-        it("return 3rd record", function(done) {
-            request.get(base_url + '/hobby/3', (error, response, body) => {
-                expect(body).toBe('swimming');
-                done();
+
+            it("returns even numbered elements form array", () => {
+                let temp = [];
+
+                for (let i = 0; i < list.length; i += 2) {
+                    temp.push(list[i]);
+                }
+
+                expect(temp).toEqual(['jogging', 'diving', 'reading']);
             });
-        });
-        it("return number of elements in array", function(done) {
-            request.get(base_url + '/count', (error, response, body) => {
-                expect(body).toBe('5');
-                done();
+
+            it("returns 'reading' as last element", () => {
+                expect(list[list.length - 1]).toBe('reading');
             });
-        });
-        it("return number of elements in array", function(done) {
-            request.get(base_url + '/count', (error, response, body) => {
-                expect(body).toBe('["jogging", "diving", "reading"]');
-                done();
-            });
-        });
+        })
     });
 });
