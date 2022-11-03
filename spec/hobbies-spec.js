@@ -15,7 +15,6 @@ describe("test api |", () => {
 
             it("returns even numbered elements form array", () => {
                 let temp = [];
-
                 for (let i = 0; i < list.length; i += 2) {
                     temp.push(list[i]);
                 }
